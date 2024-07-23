@@ -5,7 +5,19 @@ const app = express();
 const PORT = 3333; // Ensure this matches the port you are using
 
 app.get('/', (req, res) => {
-    res.send('Welcome to the Node.js server! Use the following endpoints to get the desired output: /status, /status/peers, /redistributionstate, /reservestate, /chainstate, /node, /health');
+    res.send(`
+        <h1>Welcome to the Node.js server!</h1>
+        <p>Use the following endpoints to get the desired output:</p>
+        <ul>
+            <li><a href="/status">/status</a></li>
+            <li><a href="/status/peers">/status/peers</a></li>
+            <li><a href="/redistributionstate">/redistributionstate</a></li>
+            <li><a href="/reservestate">/reservestate</a></li>
+            <li><a href="/chainstate">/chainstate</a></li>
+            <li><a href="/node">/node</a></li>
+            <li><a href="/health">/health</a></li>
+        </ul>
+    `);
 });
 
 const createEndpoint = (path, command) => {
