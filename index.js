@@ -6,7 +6,7 @@ const PORT = 3333; // Ensure this matches the port you are using
 
 app.get('/', (req, res) => {
     res.send(`
-        <h1>Welcome to the Node.js server!</h1>
+        <h1>Welcome to the Swarm Bee server!</h1>
         <p>Use the following endpoints to get the desired output:</p>
         <ul>
             <li><a href="/status">/status</a></li>
