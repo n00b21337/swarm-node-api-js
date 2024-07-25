@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
             <li><a href="/chainstate">/chainstate</a></li>
             <li><a href="/node">/node</a></li>
             <li><a href="/health">/health</a></li>
+            <li><a href="/stamps">/stamps</a></li>
         </ul>
     `);
 });
@@ -46,6 +47,7 @@ createEndpoint('/reservestate', 'curl -s http://localhost:1633/reservestate | jq
 createEndpoint('/chainstate', 'curl -s http://localhost:1633/chainstate | jq .');
 createEndpoint('/node', 'curl -s http://localhost:1633/node | jq .');
 createEndpoint('/health', 'curl -s http://localhost:1633/health | jq .');
+createEndpoint('/stamps', 'curl -s http://localhost:1633/stamps | jq .');
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
