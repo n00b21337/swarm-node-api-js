@@ -61,7 +61,7 @@ createEndpoint(
 createEndpoint("/node", "curl -s http://localhost:1633/node | jq .");
 createEndpoint("/health", "curl -s http://localhost:1633/health | jq .");
 createEndpoint("/stamps", "curl -s http://localhost:1633/stamps | jq .");
-createEndpoint("/stamps", "curl -s http://localhost:1633/metrics | jq .");
+createEndpoint("/metrics", "curl -s http://localhost:1633/metrics | jq .");
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
