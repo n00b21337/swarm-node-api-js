@@ -35,33 +35,31 @@ const createEndpoint = (path, command) => {
         res.status(500).send(`Command stderr: ${stderr}`);
         return;
       }
-      res.send(stdout);
+
+      // Attempt to parse as JSON, fallback to plain text
+      try {
+        const json = JSON.parse(stdout);
+        res.json(json);
+      } catch (parseError) {
+        res.send(stdout);
+      }
     });
   });
 };
 
 // Add all the endpoints
-createEndpoint("/status", "curl -s http://localhost:1633/status | jq .");
-createEndpoint(
-  "/status/peers",
-  "curl -s http://localhost:1633/status/peers | jq ."
-);
+createEndpoint("/status", "curl -s http://localhost:1633/status");
+createEndpoint("/status/peers", "curl -s http://localhost:1633/status/peers");
 createEndpoint(
   "/redistributionstate",
-  "curl -s http://localhost:1633/redistributionstate | jq ."
+  "curl -s http://localhost:1633/redistributionstate"
 );
-createEndpoint(
-  "/reservestate",
-  "curl -s http://localhost:1633/reservestate | jq ."
-);
-createEndpoint(
-  "/chainstate",
-  "curl -s http://localhost:1633/chainstate | jq ."
-);
-createEndpoint("/node", "curl -s http://localhost:1633/node | jq .");
-createEndpoint("/health", "curl -s http://localhost:1633/health | jq .");
-createEndpoint("/stamps", "curl -s http://localhost:1633/stamps | jq .");
-createEndpoint("/metrics", "curl -s http://localhost:1633/metrics | jq .");
+createEndpoint("/reservestate", "curl -s http://localhost:1633/reservestate");
+createEndpoint("/chainstate", "curl -s http://localhost:1633/chainstate");
+createEndpoint("/node", "curl -s http://localhost:1633/node");
+createEndpoint("/health", "curl -s http://localhost:1633/health");
+createEndpoint("/stamps", "curl -s http://localhost:1633/stamps");
+createEndpoint("/metrics", "curl -s http://localhost:1633/metrics");
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
